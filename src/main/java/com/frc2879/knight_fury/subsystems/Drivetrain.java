@@ -52,6 +52,8 @@ public class Drivetrain extends Subsystem {
         rightTalon.set(0);
         
         robotDrive = new RobotDrive(leftTalon, rightTalon);
+        
+        robotDrive.setSafetyEnabled(false);
     }
 
     public void initDefaultCommand() {
