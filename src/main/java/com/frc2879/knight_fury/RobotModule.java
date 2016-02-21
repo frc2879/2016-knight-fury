@@ -1,28 +1,45 @@
 package com.frc2879.knight_fury;
 
+import com.frc2879.knight_fury.subsystems.*;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.openrio.toast.core.ToastConfiguration;
 import jaci.openrio.toast.lib.log.Logger;
 import jaci.openrio.toast.lib.module.IterativeModule;
+import jaci.openrio.toast.lib.state.RobotState;
 
 public class RobotModule extends IterativeModule {
 
     public static Logger logger;
+    
+    public static final String moduleName = "2016-knight-fury";
+    public static final String moduleVersion = "0.0.1";
+    
+    public static final String robotName = ToastConfiguration.Property.ROBOT_NAME.asString();
+    public static final int robotTeam = ToastConfiguration.Property.ROBOT_TEAM.asInt();
+    public static final String robotDesc = ToastConfiguration.Property.ROBOT_DESC.asString();
 
     @Override
     public String getModuleName() {
-        return "2016-knight-fury";
+        return moduleName;
     }
 
     @Override
     public String getModuleVersion() {
-        return "0.0.1";
+        return moduleVersion;
     }
 
     public static OI oi;
+    
+    public static Drivetrain drivetrain;
+    public static Arm arm;
+    public static Grabber grabber;
+    public static Pneumatics pneumatics;
+    public static Shooter shooter;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -33,14 +50,29 @@ public class RobotModule extends IterativeModule {
      */
     @Override
     public void robotInit() {
-        logger = new Logger("2016-knight-fury", Logger.ATTR_DEFAULT);
+        logger = new Logger(moduleName, Logger.ATTR_DEFAULT);
         // TODO: Module Init
+        
+        RobotConfig.load();
 
         oi = new OI();
+        
+        drivetrain = new Drivetrain();
+        arm = new Arm();
+        grabber = new Grabber();
+        pneumatics = new Pneumatics();
+        shooter = new Shooter();
+        
+        
         chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());
         // chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+    }
+    
+    @Override
+    public void tickState(RobotState state) {
+        Scheduler.getInstance().run();
     }
 
     /**
@@ -53,7 +85,7 @@ public class RobotModule extends IterativeModule {
     }
 
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
     }
 
     /**
@@ -86,7 +118,7 @@ public class RobotModule extends IterativeModule {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
@@ -101,7 +133,7 @@ public class RobotModule extends IterativeModule {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
     }
 
     /**
