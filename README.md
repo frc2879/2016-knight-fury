@@ -1,4 +1,4 @@
-# 2016-knight-fury
+# 2016-knight-fury [![Build Status](https://travis-ci.org/frc2879/2016-knight-fury.svg?branch=master)](https://travis-ci.org/frc2879/2016-knight-fury)
 FRC Team 2879 robot code for the 2016 Stronghold competition, code-named "Knight Fury"
 
 To set up this module in your development environment, follow these steps:
