@@ -25,17 +25,23 @@ public class Grabber extends Subsystem {
         grabberSol.set(val);
     }
     
+    static boolean reversed = true;
+    
     //grabber is in grabbed position when sol is set to false
     public boolean getGrabbed() {
-        return !grabberSol.get();
+        if(reversed) {
+            return !grabberSol.get();
+        } else {
+            return grabberSol.get();
+        }
     }
     
     public void grab() {
-        setSol(false);
+        setSol(!reversed);
     }
     
     public void release() {
-        setSol(true);
+        setSol(reversed);
     }
     
     public void toggle() {

@@ -6,6 +6,8 @@ public class RobotConfig {
     
     public static ModuleConfig config;
 
+    public static int CONTROLLER_DRIVER;
+    public static int CONTROLLER_CODRIVER;
     
     public static String DRIVE_TYPE;
     public static boolean DRIVE_SQUAREDINPUTS;
@@ -36,6 +38,9 @@ public class RobotConfig {
     
     public static void load() {
         config = new ModuleConfig(RobotModule.moduleName);
+        
+        CONTROLLER_DRIVER = config.getInt("controller.driver", 0);
+        CONTROLLER_CODRIVER = config.getInt("controller.codriver", 1);
         
         //Drive preferences
         DRIVE_TYPE = config.getString("drive.type", "TANK");

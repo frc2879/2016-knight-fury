@@ -37,12 +37,12 @@ public class RobotModule extends IterativeModule {
     
     public static Drivetrain drivetrain;
     public static Arm arm;
-    public static Grabber grabber;
     public static Pneumatics pneumatics;
+    public static Grabber grabber;
     public static Shooter shooter;
 
-    Command autonomousCommand;
-    SendableChooser chooser;
+    //Command autonomousCommand;
+    //SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -54,20 +54,22 @@ public class RobotModule extends IterativeModule {
         // TODO: Module Init
         
         RobotConfig.load();
-
+        
         oi = new OI();
         
         drivetrain = new Drivetrain();
         arm = new Arm();
-        grabber = new Grabber();
         pneumatics = new Pneumatics();
+        grabber = new Grabber();
         shooter = new Shooter();
+                
+        SmartDashboard.putData(RobotModule.drivetrain);
+        SmartDashboard.putData(RobotModule.arm);
+        SmartDashboard.putData(RobotModule.pneumatics);
+        SmartDashboard.putData(RobotModule.grabber);
+        SmartDashboard.putData(RobotModule.shooter);
         
-        
-        chooser = new SendableChooser();
-        //chooser.addDefault("Default Auto", new ExampleCommand());
-        // chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        //autoChooser = new SendableChooser();
     }
     
     @Override
@@ -100,7 +102,9 @@ public class RobotModule extends IterativeModule {
      * to the switch structure below with additional strings & commands.
      */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
+        //autonomousCommand = (Command) autoChooser.getSelected();
+        
+        
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -110,8 +114,8 @@ public class RobotModule extends IterativeModule {
          */
 
         // schedule the autonomous command (example)
-        if (autonomousCommand != null)
-            autonomousCommand.start();
+       // if (autonomousCommand != null)
+       //     autonomousCommand.start();
     }
 
     /**
@@ -126,7 +130,7 @@ public class RobotModule extends IterativeModule {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        //if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     /**

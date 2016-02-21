@@ -35,20 +35,27 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	
-	private final XboxController driveJoystick = new XboxController(0);
+	private final XboxController controllerDriver;
+	private final XboxController controllerCoDriver;
 	
 	public OI() {
+	    
+	    controllerDriver = new XboxController(RobotConfig.CONTROLLER_DRIVER);
+	    controllerCoDriver = new XboxController(RobotConfig.CONTROLLER_CODRIVER);
 		
-		driveJoystick.rt.setTriggerSensitivity(0.3);
-		driveJoystick.lt.setTriggerSensitivity(0.3);
+	    //controllerDriver.rt.setTriggerSensitivity(0.3);
+	    //controllerDriver.lt.setTriggerSensitivity(0.3);
 		
 	}
 	
-	public XboxController getDriveJoystick() {
-		return driveJoystick;
+	public XboxController getcontrollerDriver() {
+		return controllerDriver;
 	}
 	
-	
+	public XboxController getcontrollerCoDriver() {
+        return controllerCoDriver;
+    }
+    
 	
 }
 
