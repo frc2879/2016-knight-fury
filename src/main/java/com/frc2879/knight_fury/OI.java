@@ -1,5 +1,6 @@
 package com.frc2879.knight_fury;
 
+import com.frc2879.knight_fury.commands.*;
 import com.frc2879.xboxcontroller.XboxController;
 
 /**
@@ -45,6 +46,8 @@ public class OI {
 		
 	    //controllerDriver.rt.setTriggerSensitivity(0.3);
 	    //controllerDriver.lt.setTriggerSensitivity(0.3);
+	    
+	    controllerDriver.rb.whenPressed(new GrabberToggle());
 		
 	}
 	

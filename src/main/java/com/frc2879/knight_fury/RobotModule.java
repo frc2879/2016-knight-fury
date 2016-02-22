@@ -55,13 +55,13 @@ public class RobotModule extends IterativeModule {
         
         RobotConfig.load();
         
-        oi = new OI();
-        
         drivetrain = new Drivetrain();
         arm = new Arm();
         pneumatics = new Pneumatics();
         grabber = new Grabber();
         shooter = new Shooter();
+        
+        oi = new OI();
                 
         SmartDashboard.putData(RobotModule.drivetrain);
         SmartDashboard.putData(RobotModule.arm);
