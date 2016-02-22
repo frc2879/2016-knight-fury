@@ -47,8 +47,9 @@ public class OI {
 	    //controllerDriver.rt.setTriggerSensitivity(0.3);
 	    //controllerDriver.lt.setTriggerSensitivity(0.3);
 	    
-	    controllerDriver.rb.whenPressed(new GrabberToggle());
-		
+	    controllerDriver.lb.whenPressed(new GrabberToggle());
+		controllerDriver.rb.whenPressed(new ShootBall());
+	    
 	}
 	
 	public XboxController getcontrollerDriver() {

@@ -31,6 +31,8 @@ public class RobotConfig {
     public static boolean ARM_TALON_REVERSE;
     public static boolean ARM_TALON_BRAKE;
     
+    public static double COMMANDS_SHOOTBALL_WAITTIMEOUT;
+    
     
     public RobotConfig() {
         // TODO Auto-generated constructor stub
@@ -69,6 +71,7 @@ public class RobotConfig {
         ARM_TALON_REVERSE = config.getBoolean("arm.talon.reverse", false);
         ARM_TALON_BRAKE = config.getBoolean("arm.talon.brake", false);
         
+        COMMANDS_SHOOTBALL_WAITTIMEOUT = config.getDouble("commands.shootball.waittimeout", 1);
     }
     
 
