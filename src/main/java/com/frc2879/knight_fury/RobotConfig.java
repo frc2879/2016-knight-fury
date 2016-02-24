@@ -17,6 +17,9 @@ public class RobotConfig {
     public static Integer[] DRIVETRAIN_TALONS_LEFT_IDS;
     public static Integer[] DRIVETRAIN_TALONS_RIGHT_IDS;
     
+    public static int DRIVETRAIN_TALONS_LEFT_ENCODER;
+    public static int DRIVETRAIN_TALONS_RIGHT_ENCODER;
+    
     public static boolean DRIVETRAIN_TALONS_LEFT_REVERSE;
     public static boolean DRIVETRAIN_TALONS_RIGHT_REVERSE;
     
@@ -31,7 +34,11 @@ public class RobotConfig {
     public static boolean ARM_TALON_REVERSE;
     public static boolean ARM_TALON_BRAKE;
     
-    public static double COMMANDS_SHOOTBALL_WAITTIMEOUT;
+    public static double COMMANDS_SHOOTBALL_WAITTIMEOUT_SHOOTEREXTENDRETRACT;
+    public static double COMMANDS_SHOOTBALL_WAITTIMEOUT_GRABRELEASESHOOT;
+    
+    public static double COMMANDS_MOVEARMDOWN_SPEEDMULTIPLIER;
+    public static double COMMANDS_MOVEARMUP_SPEEDMULTIPLIER;
     
     
     public RobotConfig() {
@@ -57,6 +64,9 @@ public class RobotConfig {
         DRIVETRAIN_TALONS_LEFT_REVERSE = config.getBoolean("drivetrain.talons.left.reverse", false);
         DRIVETRAIN_TALONS_RIGHT_REVERSE = config.getBoolean("drivetrain.talons.right.reverse", false);
         
+        DRIVETRAIN_TALONS_LEFT_ENCODER = config.getInt("drivetrain.talons.left.encoder", DRIVETRAIN_TALONS_LEFT_IDS[1]);
+        DRIVETRAIN_TALONS_RIGHT_ENCODER = config.getInt("drivetrain.talons.right.encoder", DRIVETRAIN_TALONS_RIGHT_IDS[1]);
+        
         //PCM CAN ID
         PNEUMATICS_PCM = config.getInt("pneumatics.pcm", 0);
         
@@ -71,7 +81,11 @@ public class RobotConfig {
         ARM_TALON_REVERSE = config.getBoolean("arm.talon.reverse", false);
         ARM_TALON_BRAKE = config.getBoolean("arm.talon.brake", false);
         
-        COMMANDS_SHOOTBALL_WAITTIMEOUT = config.getDouble("commands.shootball.waittimeout", 1);
+        COMMANDS_SHOOTBALL_WAITTIMEOUT_SHOOTEREXTENDRETRACT = config.getDouble("commands.shootball.waittimeout.shooterextendretract", 1);
+        COMMANDS_SHOOTBALL_WAITTIMEOUT_GRABRELEASESHOOT = config.getDouble("commands.shootball.waittimeout.grabreleaseshoot", 0.25);
+        
+        COMMANDS_MOVEARMDOWN_SPEEDMULTIPLIER = config.getDouble("commands.movearmdown.speedmultiplier", 0.5);
+        COMMANDS_MOVEARMUP_SPEEDMULTIPLIER = config.getDouble("commands.movearmup.speedmultiplier", 0.5);
     }
     
 

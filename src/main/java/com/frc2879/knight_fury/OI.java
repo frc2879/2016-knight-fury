@@ -44,11 +44,14 @@ public class OI {
 	    controllerDriver = new XboxController(RobotConfig.CONTROLLER_DRIVER);
 	    controllerCoDriver = new XboxController(RobotConfig.CONTROLLER_CODRIVER);
 		
-	    //controllerDriver.rt.setTriggerSensitivity(0.3);
-	    //controllerDriver.lt.setTriggerSensitivity(0.3);
+	    controllerDriver.rt.setTriggerSensitivity(0.3);
+	    controllerDriver.lt.setTriggerSensitivity(0.3);
 	    
 	    controllerDriver.lb.whenPressed(new GrabberToggle());
 		controllerDriver.rb.whenPressed(new ShootBall());
+		
+		controllerDriver.lt.whenPressed(new MoveArmDown());
+		controllerDriver.rt.whenPressed(new MoveArmUp());
 	    
 	}
 	

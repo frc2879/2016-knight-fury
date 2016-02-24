@@ -20,13 +20,18 @@ public class Arm extends Subsystem {
         super("Arm");
         
         armTalon = Registrar.canTalon(RobotConfig.ARM_TALON_ID);
-        armTalon.reverseOutput(RobotConfig.ARM_TALON_REVERSE);
+        //armTalon.reverseOutput(RobotConfig.ARM_TALON_REVERSE);
+        armTalon.setInverted(RobotConfig.ARM_TALON_REVERSE);
         armTalon.enableBrakeMode(RobotConfig.ARM_TALON_BRAKE);
     }
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void set(double outputValue) {
+        armTalon.set(outputValue);
     }
     
     public void stop() {

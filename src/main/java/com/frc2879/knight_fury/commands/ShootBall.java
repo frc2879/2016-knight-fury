@@ -29,8 +29,9 @@ public class ShootBall extends CommandGroup {
         // arm.
         
         addSequential(new GrabberRelease());
+        addSequential(new WaitCommand(RobotConfig.COMMANDS_SHOOTBALL_WAITTIMEOUT_GRABRELEASESHOOT));
         addSequential(new ShooterExtend());
-        addSequential(new WaitCommand(RobotConfig.COMMANDS_SHOOTBALL_WAITTIMEOUT));
+        addSequential(new WaitCommand(RobotConfig.COMMANDS_SHOOTBALL_WAITTIMEOUT_SHOOTEREXTENDRETRACT));
         addSequential(new ShooterRetract());
     }
 }
