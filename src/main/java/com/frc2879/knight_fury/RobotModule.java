@@ -1,23 +1,27 @@
 package com.frc2879.knight_fury;
 
+import com.frc2879.knight_fury.addon.BlackBoxLogger;
+import com.frc2879.knight_fury.commands.DriveForwardDistance;
 import com.frc2879.knight_fury.subsystems.*;
+import com.frc2879.knight_fury.util.HelpableAbstractCommand;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.openrio.toast.core.ToastConfiguration;
+import jaci.openrio.toast.core.command.CommandBus;
+import jaci.openrio.toast.core.loader.module.ModuleManager;
 import jaci.openrio.toast.lib.log.Logger;
 import jaci.openrio.toast.lib.module.IterativeModule;
+import jaci.openrio.toast.lib.module.ModuleConfig;
 import jaci.openrio.toast.lib.state.RobotState;
 
+//@Branch(branch = "com.frc2879.knight_fury.addon.BlackBoxLogger", dependency = "BlackBox", method = "BBload")
 public class RobotModule extends IterativeModule {
 
     public static Logger logger;
     
     public static final String moduleName = "2016-knight-fury";
-    public static final String moduleVersion = "0.1.0";
+    public static final String moduleVersion = "0.1.3";
     
     public static final String robotName = ToastConfiguration.Property.ROBOT_NAME.asString();
     public static final int robotTeam = ToastConfiguration.Property.ROBOT_TEAM.asInt();
@@ -32,6 +36,8 @@ public class RobotModule extends IterativeModule {
     public String getModuleVersion() {
         return moduleVersion;
     }
+    
+    public static ModuleConfig config;
 
     public static OI oi;
     
@@ -40,6 +46,9 @@ public class RobotModule extends IterativeModule {
     public static Pneumatics pneumatics;
     public static Grabber grabber;
     public static Shooter shooter;
+    public static IMU imu;
+    
+    public static boolean loaded = false;
 
     //Command autonomousCommand;
     //SendableChooser autoChooser;
@@ -53,25 +62,59 @@ public class RobotModule extends IterativeModule {
         logger = new Logger(moduleName, Logger.ATTR_DEFAULT);
         // TODO: Module Init
         
-        RobotConfig.load();
-        
+        config = new ModuleConfig(RobotModule.moduleName);
+        RobotConfig.load(config);
+
+        CommandBus.registerCommand(new HelpableAbstractCommand() {
+            @Override
+            public String getCommandName() {
+                return "reloadkfconfig";
+            }
+            @Override
+            public void invokeCommand(int argLength, String[] args, String fullCommand) {
+                RobotConfig.load(RobotModule.config);
+                RobotModule.logger.info("Config reloaded");
+            }
+            @Override
+            public String getHelp() {
+                return "Reloads Knight Fury config";
+            }
+        });
+
         drivetrain = new Drivetrain();
         arm = new Arm();
         pneumatics = new Pneumatics();
         grabber = new Grabber();
         shooter = new Shooter();
+        imu = new IMU();
+        
         
         oi = new OI();
+        
+        if(ModuleManager.moduleExists("BlackBox"))
+            BlackBoxLogger.init();
                 
-        SmartDashboard.putData(RobotModule.drivetrain);
-        SmartDashboard.putData(RobotModule.arm);
-        SmartDashboard.putData(RobotModule.pneumatics);
-        SmartDashboard.putData(RobotModule.grabber);
-        SmartDashboard.putData(RobotModule.shooter);
+        loaded = true;
         
         //autoChooser = new SendableChooser();
+
+
+        CommandBus.registerCommand(new HelpableAbstractCommand() {
+            @Override
+            public String getCommandName(){
+                return "driveforwarddist";
+            }
+            @Override
+            public void invokeCommand(int argLength, String[] args, String command) {
+                Scheduler.getInstance().add(new DriveForwardDistance(Double.valueOf(args[0]), Double.valueOf(args[1])));
+            }
+            @Override
+            public String getHelp() {
+                return "Drives forward for a distance. Args: [speed, distance (in feet)]";
+            }
+        });
     }
-    
+
     @Override
     public void tickState(RobotState state) {
         Scheduler.getInstance().run();

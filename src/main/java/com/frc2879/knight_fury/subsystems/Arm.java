@@ -4,6 +4,7 @@ import com.frc2879.knight_fury.RobotConfig;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 /**
@@ -18,6 +19,7 @@ public class Arm extends Subsystem {
     
     public Arm() {
         super("Arm");
+        SmartDashboard.putData(this);
         
         armTalon = Registrar.canTalon(RobotConfig.ARM_TALON_ID);
         //armTalon.reverseOutput(RobotConfig.ARM_TALON_REVERSE);
@@ -32,6 +34,14 @@ public class Arm extends Subsystem {
     
     public void set(double outputValue) {
         armTalon.set(outputValue);
+    }
+    
+    public boolean isFwdLimitSwitchClosed() {
+        return(armTalon.isFwdLimitSwitchClosed());
+    }
+    
+    public boolean isRevLimitSwitchClosed() {
+        return(armTalon.isRevLimitSwitchClosed());
     }
     
     public void stop() {

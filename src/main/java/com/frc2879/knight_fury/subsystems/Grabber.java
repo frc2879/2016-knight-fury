@@ -4,6 +4,7 @@ import com.frc2879.knight_fury.RobotConfig;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Grabber extends Subsystem {
     
     public Grabber() {
         super("Grabber");
+        SmartDashboard.putData(this);
         
         grabberSol = new Solenoid(RobotConfig.PNEUMATICS_PCM, RobotConfig.PNEUMATICS_GRABBER);
     }    

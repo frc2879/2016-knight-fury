@@ -4,6 +4,7 @@ import com.frc2879.knight_fury.RobotConfig;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
 *
@@ -17,6 +18,7 @@ public class Pneumatics extends Subsystem {
    
    public Pneumatics() {
        super("Pneumatics");
+       SmartDashboard.putData(this);
        
        compressor = new Compressor(RobotConfig.PNEUMATICS_PCM);
        compressor.setClosedLoopControl(true);

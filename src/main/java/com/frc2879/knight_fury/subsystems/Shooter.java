@@ -4,6 +4,7 @@ import com.frc2879.knight_fury.RobotConfig;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Shooter extends Subsystem {
     
     public Shooter() {
         super("Shooter");
+        SmartDashboard.putData(this);
         
         shooterSol = new DoubleSolenoid(RobotConfig.PNEUMATICS_PCM, RobotConfig.PNEUMATICS_SHOOTER_FORWARD, RobotConfig.PNEUMATICS_SHOOTER_REVERSE);
     }
