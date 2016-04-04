@@ -235,6 +235,15 @@ public class Drivetrain extends Subsystem {
         return rightTalon;
     }
     
+    public void drive(double leftSpeed, double rightSpeed) {
+        leftTalon.set(-leftSpeed);
+        rightTalon.set(rightSpeed);
+    }
+    
+    public void drive(double speed) {
+        drive(speed, speed);
+    }
+    
     public void setDriveCommand(Command c) {
         getDefaultCommand().cancel();
         setDefaultCommand(c);

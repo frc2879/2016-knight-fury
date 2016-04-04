@@ -38,5 +38,18 @@ public class IMU extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public double getCurrentGyroDegrees() {
+        if(Environment.isSimulation()){
+            return 0.0;
+        } else {
+            return adisimu.getAngle();
+        }
+    }
+    
+    public void resetGyro() {
+        if(!Environment.isSimulation())
+            adisimu.reset();
+    }
 }
 

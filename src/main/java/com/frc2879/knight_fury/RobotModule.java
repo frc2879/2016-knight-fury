@@ -21,7 +21,7 @@ public class RobotModule extends IterativeModule {
     public static Logger logger;
     
     public static final String moduleName = "2016-knight-fury";
-    public static final String moduleVersion = "0.1.3";
+    public static final String moduleVersion = "0.1.4";
     
     public static final String robotName = ToastConfiguration.Property.ROBOT_NAME.asString();
     public static final int robotTeam = ToastConfiguration.Property.ROBOT_TEAM.asInt();

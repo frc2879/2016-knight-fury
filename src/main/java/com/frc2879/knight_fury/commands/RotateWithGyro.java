@@ -1,6 +1,5 @@
 package com.frc2879.knight_fury.commands;
 
-import com.frc2879.knight_fury.RobotConfig;
 import com.frc2879.knight_fury.RobotModule;
 import com.frc2879.knight_fury.subsystems.Drivetrain;
 
@@ -9,36 +8,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForwardDistance extends Command {
+public class RotateWithGyro extends Command {
     
-    private double initialDistLeft, initialDistRight, setDist, setSpeed;
+    double distance, angleInDegrees, speed, initialAngle;
+    boolean turnLeft;
     
     Drivetrain dt = RobotModule.drivetrain;
 
-    public DriveForwardDistance(double speed, double distance) {
+    public RotateWithGyro(double angleInDegrees, double speed, boolean turnLeft) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        super("DriveForwardDistance");
+        super("RotateWithGyro");
         requires(RobotModule.drivetrain);
-        setSpeed = speed;
-        setDist = distance - RobotConfig.COMMANDS_DRIVEFORWARDDISTANCE_DISTERROR;
+        
+        this.angleInDegrees = angleInDegrees;
+        this.speed = speed;
+        this.turnLeft = turnLeft;
     }
-    
+
     // Called just before this Command runs the first time
     protected void initialize() {
-        initialDistLeft = dt.getLeftTalon().getPosition();
-        initialDistRight = dt.getRightTalon().getPosition();
+        initialAngle = RobotModule.imu.getCurrentGyroDegrees();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.drive(setSpeed);
+        if (turnLeft) {
+            dt.drive(-speed, speed);
+        }
+        else {
+            dt.drive(speed,-speed);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(dt.getLeftTalon().getPosition() - initialDistLeft) > (setDist)) 
-                && (Math.abs(dt.getRightTalon().getPosition() - initialDistRight) > (setDist));
+        if (turnLeft) {
+            return (RobotModule.imu.getCurrentGyroDegrees() - initialAngle < -angleInDegrees);
+        }
+        else {
+            return (RobotModule.imu.getCurrentGyroDegrees() - initialAngle > angleInDegrees);
+        }
     }
 
     // Called once after isFinished returns true
