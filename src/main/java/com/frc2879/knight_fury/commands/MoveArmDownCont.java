@@ -21,6 +21,9 @@ public class MoveArmDownCont extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         //RobotModule.grabber.grab();
+        if(!RobotModule.grabber.getGrabbed()) {
+            this.cancel();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
