@@ -50,8 +50,8 @@ public class OI {
 	    controllerDriver.lb.whenPressed(new GrabberToggle());
 		controllerDriver.rb.whenPressed(new ShootBall());
 		
-		controllerDriver.lt.whenPressed(new MoveArmDown());
-		controllerDriver.rt.whenPressed(new MoveArmUp());
+		controllerDriver.lt.whenPressed(new MoveArmDownCont());
+		controllerDriver.rt.whenPressed(new MoveArmUpCont());
 	    
 	}
 	

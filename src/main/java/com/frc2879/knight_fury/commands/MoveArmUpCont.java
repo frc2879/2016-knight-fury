@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveArmDown extends Command {
+public class MoveArmUpCont extends Command {
 
-    public MoveArmDown() {
+    public MoveArmUpCont() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        super("MoveArmDown");
+        super("MoveArmUpCont");
         requires(RobotModule.arm);
         requires(RobotModule.grabber);
     }
@@ -26,13 +26,13 @@ public class MoveArmDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(RobotModule.grabber.getGrabbed()) {
-            RobotModule.arm.set(-(RobotModule.oi.getcontrollerDriver().lt.getX() * RobotConfig.COMMANDS_MOVEARMDOWN_SPEEDMULTIPLIER));
+            RobotModule.arm.set((RobotModule.oi.getcontrollerDriver().rt.getX() * RobotConfig.COMMANDS_MOVEARMUP_SPEEDMULTIPLIER));
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (RobotModule.oi.getcontrollerDriver().lt.getX() == 0 || RobotModule.arm.isFwdLimitSwitchClosed() || !RobotModule.grabber.getGrabbed());
+        return (RobotModule.oi.getcontrollerDriver().rt.getX() == 0 || RobotModule.arm.isRevLimitSwitchClosed() || !RobotModule.grabber.getGrabbed());
     }
 
     // Called once after isFinished returns true
