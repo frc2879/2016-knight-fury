@@ -94,8 +94,8 @@ public class RobotConfig {
         DRIVETRAIN_TALONS_LEFT_ENCODER_CODESPERREV = config.getInt("drivetrain.talons.left.encoder.codesperrev", 2048);
         DRIVETRAIN_TALONS_RIGHT_ENCODER_CODESPERREV = config.getInt("drivetrain.talons.right.encoder.codesperrev", 2048);
         
-        DRIVETRAIN_TALONS_LEFT_ENCODER_ZEROPOSITIONONINDEX = config.getBoolean("drivetrain.talons.left.encoder.zeropositiononindex", true);
-        DRIVETRAIN_TALONS_RIGHT_ENCODER_ZEROPOSITIONONINDEX = config.getBoolean("drivetrain.talons.right.encoder.zeropositiononindex", true);
+        DRIVETRAIN_TALONS_LEFT_ENCODER_ZEROPOSITIONONINDEX = config.getBoolean("drivetrain.talons.left.encoder.zeropositiononindex", false);
+        DRIVETRAIN_TALONS_RIGHT_ENCODER_ZEROPOSITIONONINDEX = config.getBoolean("drivetrain.talons.right.encoder.zeropositiononindex", false);
         
         
 

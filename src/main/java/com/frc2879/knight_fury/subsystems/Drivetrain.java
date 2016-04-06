@@ -47,14 +47,8 @@ public class Drivetrain extends Subsystem {
             SmartDashboard.putNumber("right talon speed", RobotModule.drivetrain.getRightTalon().getSpeed());
             SmartDashboard.putNumber("left talon pos", RobotModule.drivetrain.getLeftTalon().getPosition());
             SmartDashboard.putNumber("right talon pos", RobotModule.drivetrain.getRightTalon().getPosition());
-            SmartDashboard.putNumber("left talon encpos", RobotModule.drivetrain.getLeftTalon().getEncPosition());
-            SmartDashboard.putNumber("right talon encpos", RobotModule.drivetrain.getRightTalon().getEncPosition());
-            SmartDashboard.putNumber("left talon encvel", RobotModule.drivetrain.getLeftTalon().getEncVelocity());
-            SmartDashboard.putNumber("right talon encvel", RobotModule.drivetrain.getRightTalon().getEncVelocity());
             SmartDashboard.putNumber("left talon get", RobotModule.drivetrain.getLeftTalon().get());
             SmartDashboard.putNumber("right talon get", RobotModule.drivetrain.getRightTalon().get());
-            SmartDashboard.putNumber("left talon cl error", RobotModule.drivetrain.getLeftTalon().getClosedLoopError());
-            SmartDashboard.putNumber("right talon cl error", RobotModule.drivetrain.getRightTalon().getClosedLoopError());
 
         });
         

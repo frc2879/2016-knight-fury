@@ -15,13 +15,17 @@ public class DriveForwardDistance extends Command {
     
     Drivetrain dt = RobotModule.drivetrain;
 
-    public DriveForwardDistance(double speed, double distance) {
+    public DriveForwardDistance(double speed, double distance, double timeout) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        super("DriveForwardDistance");
+        super("DriveForwardDistance", timeout);
         requires(RobotModule.drivetrain);
         setSpeed = speed;
         setDist = distance - RobotConfig.COMMANDS_DRIVEFORWARDDISTANCE_DISTERROR;
+    }
+    
+    public DriveForwardDistance(double speed, double distance) {
+        this(speed, distance, 15);
     }
     
     // Called just before this Command runs the first time

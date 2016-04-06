@@ -18,7 +18,7 @@ public class RotateWithGyro extends Command {
     public RotateWithGyro(double angleInDegrees, double speed, boolean turnLeft) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        super("RotateWithGyro");
+        super("RotateWithGyro", 4);
         requires(RobotModule.drivetrain);
         
         this.angleInDegrees = angleInDegrees;

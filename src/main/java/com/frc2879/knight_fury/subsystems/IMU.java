@@ -1,11 +1,13 @@
 package com.frc2879.knight_fury.subsystems;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.frc2879.knight_fury.RobotModule;
+import com.frc2879.knight_fury.lib.device.ADIS16448_IMU;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.openrio.toast.core.Environment;
+import jaci.openrio.toast.core.thread.Async;
 import jaci.openrio.toast.core.thread.Heartbeat;
 
 /**
@@ -22,7 +24,9 @@ public class IMU extends Subsystem {
         if(Environment.isSimulation()){
             
         } else {
-            adisimu = new ADIS16448_IMU();
+            Async.schedule(() -> {
+                adisimu = new ADIS16448_IMU();
+            });
         }
         
         Heartbeat.add(skipped -> {
@@ -43,7 +47,7 @@ public class IMU extends Subsystem {
         if(Environment.isSimulation()){
             return 0.0;
         } else {
-            return adisimu.getAngle();
+            return adisimu.getAngleZ();
         }
     }
     

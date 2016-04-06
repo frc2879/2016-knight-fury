@@ -12,13 +12,17 @@ public class MoveArmDown extends Command {
     
     private double setSpeed;
 
-    public MoveArmDown(Double speed) {
+    public MoveArmDown(Double speed, double timeout) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        super("MoveArmDown");
+        super("MoveArmDown", timeout);
         requires(RobotModule.arm);
         requires(RobotModule.grabber);
         setSpeed = speed;
+    }
+    
+    public MoveArmDown(Double speed) {
+        this(speed, 5);
     }
 
     // Called just before this Command runs the first time

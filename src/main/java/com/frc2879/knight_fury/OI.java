@@ -53,9 +53,9 @@ public class OI {
 		controllerDriver.lt.whenPressed(new MoveArmDownCont());
 		controllerDriver.rt.whenPressed(new MoveArmUpCont());
 		
-		controllerDriver.dPad.left.whenPressed(new RotateWithGyro(90, 1, true));
-		controllerDriver.dPad.right.whenPressed(new RotateWithGyro(90, 1, false));
-		controllerDriver.dPad.down.whenPressed(new RotateWithGyro(180, 1, false));
+		controllerDriver.dPad.left.whenPressed(new RotateWithGyro(67, 0.8, true));
+		controllerDriver.dPad.right.whenPressed(new RotateWithGyro(67, 0.8, false));
+		controllerDriver.dPad.down.whenPressed(new RotateWithGyro(157, 0.8, false));
 	    
 	}
 	

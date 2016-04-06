@@ -2,11 +2,15 @@ package com.frc2879.knight_fury;
 
 import com.frc2879.knight_fury.addon.BlackBoxLogger;
 import com.frc2879.knight_fury.commands.DriveForwardDistance;
+import com.frc2879.knight_fury.commands.autonomous.*;
 import com.frc2879.knight_fury.subsystems.*;
 import com.frc2879.knight_fury.util.HelpableAbstractCommand;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.openrio.toast.core.ToastConfiguration;
 import jaci.openrio.toast.core.command.CommandBus;
 import jaci.openrio.toast.core.loader.module.ModuleManager;
@@ -21,7 +25,7 @@ public class RobotModule extends IterativeModule {
     public static Logger logger;
     
     public static final String moduleName = "2016-knight-fury";
-    public static final String moduleVersion = "0.1.4";
+    public static final String moduleVersion = "0.1.5";
     
     public static final String robotName = ToastConfiguration.Property.ROBOT_NAME.asString();
     public static final int robotTeam = ToastConfiguration.Property.ROBOT_TEAM.asInt();
@@ -50,8 +54,8 @@ public class RobotModule extends IterativeModule {
     
     public static boolean loaded = false;
 
-    //Command autonomousCommand;
-    //SendableChooser autoChooser;
+    Command autonomousCommand;
+    SendableChooser autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -72,6 +76,7 @@ public class RobotModule extends IterativeModule {
             }
             @Override
             public void invokeCommand(int argLength, String[] args, String fullCommand) {
+                RobotModule.config.reload();
                 RobotConfig.load(RobotModule.config);
                 RobotModule.logger.info("Config reloaded");
             }
@@ -94,9 +99,14 @@ public class RobotModule extends IterativeModule {
         if(ModuleManager.moduleExists("BlackBox"))
             BlackBoxLogger.init();
                 
-        loaded = true;
         
-        //autoChooser = new SendableChooser();
+        
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Low Bar Once", new AutoLowBarOnce());
+        autoChooser.addObject("Low Bar Twice", new AutoLowBarTwice());
+        autoChooser.addObject("No Auto", null);
+        
+        SmartDashboard.putData("Auto Chooser", autoChooser);
 
 
         CommandBus.registerCommand(new HelpableAbstractCommand() {
@@ -113,6 +123,8 @@ public class RobotModule extends IterativeModule {
                 return "Drives forward for a distance. Args: [speed, distance (in feet)]";
             }
         });
+        
+        loaded = true;
     }
 
     @Override
@@ -145,9 +157,8 @@ public class RobotModule extends IterativeModule {
      * to the switch structure below with additional strings & commands.
      */
     public void autonomousInit() {
-        //autonomousCommand = (Command) autoChooser.getSelected();
-        
-        
+        autonomousCommand = (Command) autoChooser.getSelected();
+
 
         /*
          * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -157,8 +168,8 @@ public class RobotModule extends IterativeModule {
          */
 
         // schedule the autonomous command (example)
-       // if (autonomousCommand != null)
-       //     autonomousCommand.start();
+        if (autonomousCommand != null)
+            autonomousCommand.start();
     }
 
     /**
@@ -173,7 +184,7 @@ public class RobotModule extends IterativeModule {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        //if (autonomousCommand != null) autonomousCommand.cancel();
+        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     /**
