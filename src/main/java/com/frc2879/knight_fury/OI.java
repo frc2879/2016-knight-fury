@@ -44,14 +44,29 @@ public class OI {
 	    controllerDriver = new XboxController(RobotConfig.CONTROLLER_DRIVER);
 	    controllerCoDriver = new XboxController(RobotConfig.CONTROLLER_CODRIVER);
 		
+	    controllerCoDriver.rt.setTriggerSensitivity(0.3);
+	    controllerCoDriver.lt.setTriggerSensitivity(0.3);
+	    
+	    controllerCoDriver.lb.whenPressed(new MoveArmDown(0.5));
+	    controllerCoDriver.rb.whenPressed(new MoveArmUp(0.5));
+		
+	    controllerCoDriver.lt.whenPressed(new MoveArmDownCont());
+	    controllerCoDriver.rt.whenPressed(new MoveArmUpCont());
+		
+	    controllerCoDriver.b.whenPressed(new GrabberToggle());
+	    controllerCoDriver.x.whenPressed(new ShootBall());
+	    
 	    controllerDriver.rt.setTriggerSensitivity(0.3);
 	    controllerDriver.lt.setTriggerSensitivity(0.3);
-	    
-	    controllerDriver.lb.whenPressed(new GrabberToggle());
-		controllerDriver.rb.whenPressed(new ShootBall());
-		
-		controllerDriver.lt.whenPressed(new MoveArmDownCont());
-		controllerDriver.rt.whenPressed(new MoveArmUpCont());
+        
+	    controllerDriver.lb.whenPressed(new MoveArmDown(0.5));
+	    controllerDriver.rb.whenPressed(new MoveArmUp(0.5));
+        
+	    controllerDriver.lt.whenPressed(new MoveArmDownCont());
+	    controllerDriver.rt.whenPressed(new MoveArmUpCont());
+        
+	    controllerDriver.b.whenPressed(new GrabberToggle());
+	    controllerDriver.x.whenPressed(new ShootBall());
 		
 		controllerDriver.dPad.left.whenPressed(new RotateWithGyro(67, 0.8, true));
 		controllerDriver.dPad.right.whenPressed(new RotateWithGyro(67, 0.8, false));
