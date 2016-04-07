@@ -169,13 +169,13 @@ public class Drivetrain extends Subsystem {
         leftTalon.setEncPosition(0);
         rightTalon.setEncPosition(0);
         
-        leftTalon.setProfile(0);
-        leftTalon.setPID(RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[0], RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[1], RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[2]);
-        leftTalon.setF(RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[3]);
-        
-        rightTalon.setProfile(0);
-        rightTalon.setPID(RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[0], RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[1], RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[2]);
-        rightTalon.setF(RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[3]);
+//        leftTalon.setProfile(0);
+//        leftTalon.setPID(RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[0], RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[1], RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[2]);
+//        leftTalon.setF(RobotConfig.DRIVETRAIN_TALONS_LEFT_PIDF[3]);
+//        
+//        rightTalon.setProfile(0);
+//        rightTalon.setPID(RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[0], RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[1], RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[2]);
+//        rightTalon.setF(RobotConfig.DRIVETRAIN_TALONS_RIGHT_PIDF[3]);
         
         leftTalon.set(0);
         rightTalon.set(0);

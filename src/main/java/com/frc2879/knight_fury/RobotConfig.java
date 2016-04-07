@@ -17,8 +17,8 @@ public class RobotConfig {
     public static Integer[] DRIVETRAIN_TALONS_LEFT_IDS;
     public static Integer[] DRIVETRAIN_TALONS_RIGHT_IDS;
     
-    public static Double[] DRIVETRAIN_TALONS_LEFT_PIDF;
-    public static Double[] DRIVETRAIN_TALONS_RIGHT_PIDF;
+    //public static Double[] DRIVETRAIN_TALONS_LEFT_PIDF;
+    //public static Double[] DRIVETRAIN_TALONS_RIGHT_PIDF;
     
     public static int DRIVETRAIN_TALONS_LEFT_ENCODER_ID;
     public static int DRIVETRAIN_TALONS_RIGHT_ENCODER_ID;
@@ -56,6 +56,9 @@ public class RobotConfig {
     public static double COMMANDS_MOVEARMUP_SPEEDMULTIPLIER;
     public static double COMMANDS_DRIVEFORWARDDISTANCE_DISTERROR;
     
+    public static double COMMANDS_AUTOLOWBARONCE_MOVEARMDOWN_SPEED;
+    public static double COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_SPEED;
+    public static double COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_DISTANCE;
     
     public RobotConfig() {
         // TODO Auto-generated constructor stub
@@ -67,11 +70,12 @@ public class RobotConfig {
         CONTROLLER_DRIVER = config.getInt("controller.driver", 0);
         CONTROLLER_CODRIVER = config.getInt("controller.codriver", 1);
         
+        
         //Drive preferences
         DRIVE_TYPE = config.getString("drive.type", "ARCADE");
         DRIVE_SQUAREDINPUTS = config.getBoolean("drive.squaredinputs", false);
         
-        DRIVETRAIN_TALONS_BRAKE = config.getBoolean("drivetrain.talons.brake", false);
+        DRIVETRAIN_TALONS_BRAKE = config.getBoolean("drivetrain.talons.brake", true);
         
         DRIVETRAIN_TALONS_RAMPRATE = config.getDouble("drivetrain.talons.ramprate", 0);
         
@@ -79,8 +83,8 @@ public class RobotConfig {
         DRIVETRAIN_TALONS_LEFT_IDS = (Integer[]) config.getArray("drivetrain.talons.left.ids", new Integer[] {1, 2,});
         DRIVETRAIN_TALONS_RIGHT_IDS = (Integer[]) config.getArray("drivetrain.talons.right.ids", new Integer[] {3, 4});
         
-        DRIVETRAIN_TALONS_LEFT_PIDF = (Double[]) config.getArray("drivetrain.talons.left.pidf", new Double[] {0.0, 0.0, 0.0, 0.19343985446});
-        DRIVETRAIN_TALONS_RIGHT_PIDF = (Double[]) config.getArray("drivetrain.talons.right.pidf", new Double[] {0.0, 0.0, 0.0, 0.19343985446});
+        //DRIVETRAIN_TALONS_LEFT_PIDF = (Double[]) config.getArray("drivetrain.talons.left.pidf", new Double[] {0.0, 0.0, 0.0, 0.19343985446});
+        //DRIVETRAIN_TALONS_RIGHT_PIDF = (Double[]) config.getArray("drivetrain.talons.right.pidf", new Double[] {0.0, 0.0, 0.0, 0.19343985446});
         
         DRIVETRAIN_TALONS_LEFT_REVERSE = config.getBoolean("drivetrain.talons.left.reverse", false);
         DRIVETRAIN_TALONS_RIGHT_REVERSE = config.getBoolean("drivetrain.talons.right.reverse", false);
@@ -122,6 +126,12 @@ public class RobotConfig {
         
         COMMANDS_MOVEARMDOWN_SPEEDMULTIPLIER = config.getDouble("commands.movearmdown.speedmultiplier", 0.5);
         COMMANDS_MOVEARMUP_SPEEDMULTIPLIER = config.getDouble("commands.movearmup.speedmultiplier", 0.5);
+    
+        COMMANDS_AUTOLOWBARONCE_MOVEARMDOWN_SPEED = config.getDouble("commands.autolowbaronce.movearmdown.speed", 0.5);
+        COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_SPEED = config.getDouble("commands.autolowbaronce.driveforwarddistance.speed", 0.4);
+        COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_DISTANCE = config.getDouble("commands.autolowbaronce.driveforwarddistance.distance", 12);
+    
+    
     }
     
 
