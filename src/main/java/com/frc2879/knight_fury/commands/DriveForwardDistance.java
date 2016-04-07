@@ -41,8 +41,10 @@ public class DriveForwardDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(dt.getLeftTalon().getPosition() - initialDistLeft) > (setDist)) 
-                && (Math.abs(dt.getRightTalon().getPosition() - initialDistRight) > (setDist));
+        return ((Math.abs(dt.getLeftTalon().getPosition() - initialDistLeft) > (setDist)) 
+                && (Math.abs(dt.getRightTalon().getPosition() - initialDistRight) > (setDist)) 
+                || ((Math.abs(dt.getLeftTalon().get()) > 0.1) && dt.getLeftTalon().getSpeed() < 1) 
+                || ((Math.abs(dt.getRightTalon().get()) > 0.1) && dt.getRightTalon().getSpeed() < 1));
     }
 
     // Called once after isFinished returns true
