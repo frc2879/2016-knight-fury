@@ -25,7 +25,7 @@ public class RobotModule extends IterativeModule {
     public static Logger logger;
     
     public static final String moduleName = "2016-knight-fury";
-    public static final String moduleVersion = "1.0.0";
+    public static final String moduleVersion = "1.1.2";
     
     public static final String robotName = ToastConfiguration.Property.ROBOT_NAME.asString();
     public static final int robotTeam = ToastConfiguration.Property.ROBOT_TEAM.asInt();
@@ -87,10 +87,10 @@ public class RobotModule extends IterativeModule {
         });
 
         drivetrain = new Drivetrain();
-        arm = new Arm();
-        pneumatics = new Pneumatics();
-        grabber = new Grabber();
-        shooter = new Shooter();
+//        arm = new Arm();
+//        pneumatics = new Pneumatics();
+//        grabber = new Grabber();
+//        shooter = new Shooter();
         imu = new IMU();
         
         

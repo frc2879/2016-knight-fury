@@ -5,6 +5,7 @@ import com.frc2879.knight_fury.RobotConfig;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.openrio.toast.core.thread.Heartbeat;
 import jaci.openrio.toast.lib.registry.Registrar;
 
 /**
@@ -25,6 +26,11 @@ public class Arm extends Subsystem {
         //armTalon.reverseOutput(RobotConfig.ARM_TALON_REVERSE);
         armTalon.setInverted(RobotConfig.ARM_TALON_REVERSE);
         armTalon.enableBrakeMode(RobotConfig.ARM_TALON_BRAKE);
+        
+        Heartbeat.add(skipped -> {
+            SmartDashboard.putBoolean("Arm Up", isUp());
+            SmartDashboard.putBoolean("Arm Down", isDown());
+        });
     }
 
     public void initDefaultCommand() {
@@ -34,6 +40,14 @@ public class Arm extends Subsystem {
     
     public void set(double outputValue) {
         armTalon.set(outputValue);
+    }
+    
+    public boolean isUp() {
+        return isRevLimitSwitchClosed();
+    }
+    
+    public boolean isDown() {
+        return isFwdLimitSwitchClosed();
     }
     
     public boolean isFwdLimitSwitchClosed() {

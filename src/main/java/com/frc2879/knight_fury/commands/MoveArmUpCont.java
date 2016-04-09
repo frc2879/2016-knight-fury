@@ -2,6 +2,7 @@ package com.frc2879.knight_fury.commands;
 
 import com.frc2879.knight_fury.RobotConfig;
 import com.frc2879.knight_fury.RobotModule;
+import com.frc2879.xboxcontroller.XboxController;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,14 +10,18 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class MoveArmUpCont extends Command {
+    
+    XboxController controller;
 
-    public MoveArmUpCont() {
+    public MoveArmUpCont(XboxController controller) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         super("MoveArmUpCont");
         requires(RobotModule.arm);
         requires(RobotModule.grabber);
+        this.controller = controller;
     }
+    
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -29,13 +34,13 @@ public class MoveArmUpCont extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(RobotModule.grabber.getGrabbed()) {
-            RobotModule.arm.set((RobotModule.oi.getcontrollerDriver().rt.getX() * RobotConfig.COMMANDS_MOVEARMUP_SPEEDMULTIPLIER));
+            RobotModule.arm.set((controller.rt.getX() * RobotConfig.COMMANDS_MOVEARMUPCONT_SPEEDMULTIPLIER));
         }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (RobotModule.oi.getcontrollerDriver().rt.getX() == 0 || RobotModule.arm.isRevLimitSwitchClosed() || !RobotModule.grabber.getGrabbed());
+        return (controller.rt.getX() == 0 || RobotModule.arm.isRevLimitSwitchClosed() || !RobotModule.grabber.getGrabbed());
     }
 
     // Called once after isFinished returns true

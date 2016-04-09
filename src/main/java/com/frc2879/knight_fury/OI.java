@@ -36,41 +36,41 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	
-	private final XboxController controllerDriver;
-	private final XboxController controllerCoDriver;
+	private XboxController controllerDriver;
+	//private XboxController controllerCoDriver;
 	
 	public OI() {
 	    
 	    controllerDriver = new XboxController(RobotConfig.CONTROLLER_DRIVER);
-	    controllerCoDriver = new XboxController(RobotConfig.CONTROLLER_CODRIVER);
+//	    controllerCoDriver = new XboxController(RobotConfig.CONTROLLER_CODRIVER);
 		
-	    controllerCoDriver.rt.setTriggerSensitivity(0.3);
-	    controllerCoDriver.lt.setTriggerSensitivity(0.3);
-	    
-	    controllerCoDriver.lb.whenPressed(new MoveArmDown(0.5));
-	    controllerCoDriver.rb.whenPressed(new MoveArmUp(0.5));
+//	    controllerCoDriver.rt.setTriggerSensitivity(0.3);
+//	    controllerCoDriver.lt.setTriggerSensitivity(0.3);
+//	    
+//	    //controllerCoDriver.lb.whenPressed(new MoveArmDown(RobotConfig.COMMANDS_CONTROLLER_MOVEARMDOWN_SPEED));
+//	    //controllerCoDriver.rb.whenPressed(new MoveArmUp(RobotConfig.COMMANDS_CONTROLLER_MOVEARMUP_SPEED));
+//		
+//	    controllerCoDriver.lt.whenPressed(new MoveArmDownCont(controllerCoDriver));
+//	    controllerCoDriver.rt.whenPressed(new MoveArmUpCont(controllerCoDriver));
+//		
+//	    controllerCoDriver.b.whenPressed(new GrabberToggle());
+//	    controllerCoDriver.x.whenPressed(new ShootBall());
+//	    
+//	    controllerDriver.rt.setTriggerSensitivity(0.3);
+//	    controllerDriver.lt.setTriggerSensitivity(0.3);
+//        
+//	    //controllerDriver.lb.whenPressed(new MoveArmDown(RobotConfig.COMMANDS_CONTROLLER_MOVEARMDOWN_SPEED));
+//	    //controllerDriver.rb.whenPressed(new MoveArmUp(RobotConfig.COMMANDS_CONTROLLER_MOVEARMUP_SPEED));
+//        
+//	    controllerDriver.lt.whenPressed(new MoveArmDownCont(controllerDriver));
+//	    controllerDriver.rt.whenPressed(new MoveArmUpCont(controllerDriver));
+//        
+//	    controllerDriver.b.whenPressed(new GrabberToggle());
+//	    controllerDriver.x.whenPressed(new ShootBall());
 		
-	    controllerCoDriver.lt.whenPressed(new MoveArmDownCont());
-	    controllerCoDriver.rt.whenPressed(new MoveArmUpCont());
-		
-	    controllerCoDriver.b.whenPressed(new GrabberToggle());
-	    controllerCoDriver.x.whenPressed(new ShootBall());
-	    
-	    controllerDriver.rt.setTriggerSensitivity(0.3);
-	    controllerDriver.lt.setTriggerSensitivity(0.3);
-        
-	    controllerDriver.lb.whenPressed(new MoveArmDown(0.5));
-	    controllerDriver.rb.whenPressed(new MoveArmUp(0.5));
-        
-	    controllerDriver.lt.whenPressed(new MoveArmDownCont());
-	    controllerDriver.rt.whenPressed(new MoveArmUpCont());
-        
-	    controllerDriver.b.whenPressed(new GrabberToggle());
-	    controllerDriver.x.whenPressed(new ShootBall());
-		
-		controllerDriver.dPad.left.whenPressed(new RotateWithGyro(67, 0.8, true));
-		controllerDriver.dPad.right.whenPressed(new RotateWithGyro(67, 0.8, false));
-		controllerDriver.dPad.down.whenPressed(new RotateWithGyro(157, 0.8, false));
+		controllerDriver.dPad.left.whenPressed(new RotateWithGyro(RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_ANGLE90DEG, RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_SPEED, true));
+		controllerDriver.dPad.right.whenPressed(new RotateWithGyro(RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_ANGLE90DEG, RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_SPEED, false));
+		controllerDriver.dPad.down.whenPressed(new RotateWithGyro(RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_ANGLE180DEG, RobotConfig.COMMANDS_CONTROLLER_ROTATEWITHGYRO_SPEED, false));
 	    
 	}
 	
@@ -78,9 +78,9 @@ public class OI {
 		return controllerDriver;
 	}
 	
-	public XboxController getcontrollerCoDriver() {
-        return controllerCoDriver;
-    }
+//	public XboxController getcontrollerCoDriver() {
+//        return controllerCoDriver;
+//    }
     
 	
 }

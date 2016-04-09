@@ -19,14 +19,16 @@ public class BlackBoxLogger {
     public static void init() {
         BlackBoxContext talonclosedloop = BlackBox.context(RobotModule.moduleName + "_" + "TalonClosedLoop");
 
+        talonclosedloop.add("left talon get", RobotModule.drivetrain.getLeftTalon()::get);
+        talonclosedloop.add("right talon get", RobotModule.drivetrain.getRightTalon()::get);
         talonclosedloop.add("left talon speed", RobotModule.drivetrain.getLeftTalon()::getSpeed);
         talonclosedloop.add("right talon speed", RobotModule.drivetrain.getRightTalon()::getSpeed);
+        talonclosedloop.add("left talon pos", RobotModule.drivetrain.getLeftTalon()::getPosition);
+        talonclosedloop.add("right talon pos", RobotModule.drivetrain.getRightTalon()::getPosition);
         talonclosedloop.add("left talon encpos", RobotModule.drivetrain.getLeftTalon()::getEncPosition);
         talonclosedloop.add("right talon encpos", RobotModule.drivetrain.getRightTalon()::getEncPosition);
         talonclosedloop.add("left talon encvel", RobotModule.drivetrain.getLeftTalon()::getEncVelocity);
         talonclosedloop.add("right talon encvel", RobotModule.drivetrain.getRightTalon()::getEncVelocity);
-        talonclosedloop.add("left talon get", RobotModule.drivetrain.getLeftTalon()::get);
-        talonclosedloop.add("right talon get", RobotModule.drivetrain.getRightTalon()::get);
 
         Heartbeat.add(skipped -> {
             if (Toast.getToast().isEnabled())

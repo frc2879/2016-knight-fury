@@ -1,5 +1,6 @@
 package com.frc2879.knight_fury.commands.autonomous;
 
+import com.frc2879.knight_fury.RobotConfig;
 import com.frc2879.knight_fury.commands.DriveForwardDistance;
 import com.frc2879.knight_fury.commands.MoveArmDown;
 
@@ -30,11 +31,9 @@ public class AutoLowBarTwice extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         
-        addSequential(new MoveArmDown(0.5), 5);
-        addSequential(new DriveForwardDistance(0.4, 12), 10);
-        addSequential(new WaitCommand(1));
-        addSequential(new DriveForwardDistance(-0.4, 12), 10);
-        addSequential(new WaitCommand(1));
-        addSequential(new DriveForwardDistance(0.4, 12), 10);
+        //addSequential(new MoveArmDown(RobotConfig.COMMANDS_AUTOLOWBARTWICE_MOVEARMDOWN_SPEED), 5);
+        addSequential(new DriveForwardDistance(RobotConfig.COMMANDS_AUTOLOWBARTWICE_DRIVEFORWARDDIST_1_SPEED, RobotConfig.COMMANDS_AUTOLOWBARTWICE_DRIVEFORWARDDIST_1_DISTANCE), 10);
+        addSequential(new WaitCommand(RobotConfig.COMMANDS_AUTOLOWBARTWICE_WAIT));
+        addSequential(new DriveForwardDistance(RobotConfig.COMMANDS_AUTOLOWBARTWICE_DRIVEFORWARDDIST_2_SPEED, RobotConfig.COMMANDS_AUTOLOWBARTWICE_DRIVEFORWARDDIST_2_DISTANCE), 10);
     }
 }

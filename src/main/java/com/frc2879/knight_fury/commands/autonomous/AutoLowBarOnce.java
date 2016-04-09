@@ -30,7 +30,7 @@ public class AutoLowBarOnce extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         
-        addSequential(new MoveArmDown(RobotConfig.COMMANDS_AUTOLOWBARONCE_MOVEARMDOWN_SPEED), 5);
+        //addSequential(new MoveArmDown(RobotConfig.COMMANDS_AUTOLOWBARONCE_MOVEARMDOWN_SPEED), 5);
         addSequential(new DriveForwardDistance(RobotConfig.COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_SPEED, RobotConfig.COMMANDS_AUTOLOWBARONCE_DRIVEFORWARDDIST_DISTANCE), 10);
     }
 }
